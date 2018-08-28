@@ -17,7 +17,7 @@ app.get('/', (req, res) =>{
 } )
 
 app.get('/books',(req, res) => {
-  let SQL = 'SELECT title, author, image_url FROM books';
+  let SQL = 'SELECT  , author, image_url FROM books';
   req.query(SQL)
     .then(data => {
       let bookData = data.rows;
