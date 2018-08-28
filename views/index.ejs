@@ -1,0 +1,21 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <title>
+    Book App
+  </title>
+  <link rel="stylesheet" type='text/css' href="/styles/base.css"/>
+</head>
+
+<body>
+<p>hello World! I Came from the view folder.</p>
+
+<% items.foreach(item => { %>
+  <h2><%=item.title %></h2>
+  <h3><%=item.author %></h3>
+  <img src= <%= item.author_url %> alt="">
+<% }) %>
+
+</body>
+
+</html>
