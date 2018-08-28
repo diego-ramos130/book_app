@@ -16,6 +16,15 @@ app.get('/', (req, res) =>{
   res.render('index');
 } )
 
+app.get('/books',(req, res) => {
+  let SQL = 'SELECT title, author, image_url FROM books';
+  req.query(SQL)
+    .then(data => {
+      let bookData = data.rows;
+      res.render('bookData', {items});
+    })
+})
+
 app.use(express.static(__dirname + '/public'));
 app.listen(PORT, () => console.log('server up on ', PORT));
 
