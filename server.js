@@ -1,0 +1,21 @@
+'use strict';
+const pg = require('pg');
+const express = require('express');
+const PORT = process.env.PORT || 3000;
+const app = express();
+
+//const conString = 'postgres://kris3579:meowmeow@HOST:POST/books_app';
+const conString = 'postgres://localhost:5432';
+const client = new pg.Client(conString);
+client.connect();
+
+app.set('view engine', 'ejs');
+
+
+app.get('/', (req, res) =>{
+  res.render('index');
+} )
+
+app.use(express.static(__dirname + '/public'));
+app.listen(PORT, () => console.log('server up on ', PORT));
+
