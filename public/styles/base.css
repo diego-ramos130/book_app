@@ -27,14 +27,11 @@ h3 {
   margin-bottom: 10px;
 }
 
-a {
-  margin-bottom: 15px;
-}
-
 .book-card {
   border: solid black 1px;
   width: 85%;
   margin: 0 auto;
   margin-top: 25px;
   text-align: center;
+  padding-bottom: 15px;
 }
