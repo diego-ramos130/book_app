@@ -10,10 +10,12 @@
 <body>
 <p>hello World! I Came from the view folder.</p>
 
-<% items.foreach(item => { %>
-  <h2><%=item.title %></h2>
-  <h3><%=item.author %></h3>
-  <img src= <%= item.author_url %> alt="">
+<% books.forEach(book => { %>
+  <div class=book-card >
+  <h2><%=book.title %></h2>
+  <h3><%=book.author %></h3>
+  <img src=<%=book.image_url %> alt="">
+</div>
 <% }) %>
 
 </body>
