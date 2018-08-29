@@ -4,8 +4,7 @@
   <title>
     Book App
   </title>
-  <link rel="stylesheet" type='text/css' href="/styles/reset.css"/>
-  <link rel="stylesheet" type='text/css' href="/styles/base.css"/>
+  <%- include partials/css %>
 </head>
 
 <body>
@@ -20,26 +19,18 @@
       <h2><%=book.title %></h2>
       <h3><%=book.author %></h3>
       <img src=<%=book.image_url %> alt="">
-      <button id=<%=book.id %>>View Details</button>
+      <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
 
 
       </div>
     <% }) %>
   </section>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <%- include partials/scripts %>
   <script>
     $('.bookDeck button').on('click', function() {
-      let bullshit = $(this).attr('id');
       $.get(`/books/${$(this).attr('id')}`, function() {
       })
     });
-    // addListener(book);
-    //   function addListener(book) {
-    //     let element = document.getElementById(book.id);
-    //     element.addEventListener('click', function() { 
-    //        $.get('books/:id', console.log('stuff'));
-    //     });  
-    //   }
   </script>
 
 </body>
