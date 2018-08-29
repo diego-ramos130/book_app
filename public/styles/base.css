@@ -1,7 +1,7 @@
 body {
   width: 85%;
   margin: 0 auto;
-  background-color: chartreuse;
+  background-color: rgb(63, 97, 29);
 }
 
 img {
@@ -28,6 +28,7 @@ h3 {
 }
 
 .book-card {
+  background-color: antiquewhite;
   border: solid black 1px;
   width: 85%;
   margin: 0 auto;
