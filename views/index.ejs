@@ -1,41 +1,41 @@
 <!DOCTYPE html> 
 <html> 
-<head>
-  <%- include partials/head %>
-</head>
+  <head>
+    <%- include partials/head %>
+  </head>
 
-<body>
-  <header>
-      <%- include partials/header %>
-  </header>
+  <body>
+    <header>
+        <%- include partials/header %>
+    </header>
 
-  <main>
-    <section class="bookDeck">
+    <main>
+      <section class="bookDeck">
 
-      <% books.forEach(book => { %>
+        <% books.forEach(book => { %>
 
-        <div class=book-card >
+          <div class=book-card >
 
-          <img src=<%=book.image_url %> alt="">
-          <h2 class="cardh2"><%=book.title %></h2>
-          <h3 class="cardh3"><%=book.author %></h3>
-          <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
+            <img src=<%=book.image_url %> alt="">
+            <h2 class="cardh2"><%=book.title %></h2>
+            <h3 class="cardh3"><%=book.author %></h3>
+            <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
 
-        </div>
+          </div>
 
-      <% }) %>
+        <% }) %>
 
-    </section>
-    
-    <%- include partials/scripts %>
-    <script>
-      $('.bookDeck button').on('click', function() {
-        $.get(`/books/${$(this).attr('id')}`, function() {
-        })
-      });
-    </script>
+      </section>
+      
+      <%- include partials/scripts %>
+      <script>
+        $('.bookDeck button').on('click', function() {
+          $.get(`/books/${$(this).attr('id')}`, function() {
+          })
+        });
+      </script>
 
-  </main>
-</body>
+    </main>
+  </body>
 
 </html>

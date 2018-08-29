@@ -35,11 +35,26 @@ a {
 .cardh3 {
   font-style: italic;
   font-size: 1.25em;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 }
 
 .headerh3 {
   font-size: 1.35em;
+}
+
+.cardP {
+  width: 85%;
+  margin: 0 auto;
+  background-color: lightgray;
+  padding: 15px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+
+.cardISBN {
+  margin-top: 25px;
+  font-style: italic;
+  font-size: 1.3em;
 }
 
 .book-card {
@@ -51,6 +66,11 @@ a {
   text-align: center;
   padding-bottom: 45px;
   padding-top: 20px;
+}
+
+.backButton {
+  text-align: center;
+  margin-top: 50px;
 }
 
 #topBar {
