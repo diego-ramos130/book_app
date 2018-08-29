@@ -1,3 +1,37 @@
 body {
+  width: 85%;
+  margin: 0 auto;
   background-color: chartreuse;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.75em;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.35em;
+  margin-bottom: 10px;
+}
+
+.book-card {
+  border: solid black 1px;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 25px;
+  text-align: center;
+  padding-bottom: 15px;
 }

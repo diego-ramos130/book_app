@@ -4,19 +4,34 @@
   <title>
     Book App
   </title>
-  <link rel="stylesheet" type='text/css' href="/styles/base.css"/>
+  <%- include partials/css %>
 </head>
 
 <body>
-<p>hello World! I Came from the view folder.</p>
+  <h1>Best Books!</h1>
 
-<% books.forEach(book => { %>
-  <div class=book-card >
-  <h2><%=book.title %></h2>
-  <h3><%=book.author %></h3>
-  <img src=<%=book.image_url %> alt="">
-</div>
-<% }) %>
+  <h3><%=books.length %> Saved Books</h3>
+
+  <section class="bookDeck">
+    <% books.forEach(book => { %>
+      <div class=book-card >
+
+      <h2><%=book.title %></h2>
+      <h3><%=book.author %></h3>
+      <img src=<%=book.image_url %> alt="">
+      <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
+
+
+      </div>
+    <% }) %>
+  </section>
+  <%- include partials/scripts %>
+  <script>
+    $('.bookDeck button').on('click', function() {
+      $.get(`/books/${$(this).attr('id')}`, function() {
+      })
+    });
+  </script>
 
 </body>
 
