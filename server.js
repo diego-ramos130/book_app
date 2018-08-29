@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 //const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
+//
 const conString = 'postgres://localhost:5432';
 const client = new pg.Client(conString);
 client.connect();
@@ -25,10 +26,19 @@ app.get('/',(req, res) => {
     })
     .catch(error => {
       console.error(error);
+      throwError(res, error);
     })
 })
 
+function throwError (response, err) {
+  response.render('pages/error');
+  // type of error using err parameter?
+}
+
 app.use(express.static(__dirname + '/public'));
+
+// app.use('*', (req, res) => res.render('pages/error'));
+
 app.listen(PORT, () => console.log('server up on ', PORT));
 
 function renderBooks(rows) {
