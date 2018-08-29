@@ -16,16 +16,29 @@ app.set('view engine', 'ejs');
   res.render('index');
 } ) */
 
-app.get('/',(req, res) => {
-  let SQL = 'SELECT title, author, image_url FROM books';
-  client.query('SELECT title, author, image_url FROM books', function (error, result) {
+app.get('/books/:id', (req, res) => {
+  let SQL = 'SELECT * FROM books WHERE id = $1'
+  let values = [req.params.id];
+  client.query(SQL, values)
+    .then(data => {
+      let bookInfo = data.rows[0];
+      res.render('pages/show', { bookInfo });
+    })
+    .catch(error => {
+      throwError(res, error);
+    })
+})
+
+app.get('/', (req, res) => {
+  let SQL = 'SELECT title, author, image_url, id FROM books';
+  client.query(SQL, function (error, result) {
     console.log(result);
   });
   client.query(SQL)
     .then(data => {
       console.log(data); //undef
       let books = data.rows;
-      res.render('index', {books});
+      res.render('index', { books });
     })
     .catch(error => {
       console.error(error);
@@ -33,7 +46,8 @@ app.get('/',(req, res) => {
     })
 })
 
-function throwError (response, err) {
+
+function throwError(response, err) {
   response.render('pages/error');
   // type of error using err parameter?
 }
