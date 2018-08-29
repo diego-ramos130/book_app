@@ -6,6 +6,7 @@ body {
 
 img {
   display: block;
+  margin: 0 auto;
   margin-bottom: 15px;
 }
 
@@ -16,12 +17,24 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.75em;
   margin-top: 25px;
   margin-bottom: 10px;
 }
 
 h3 {
-  font-size: 1.25em;
+  font-size: 1.35em;
   margin-bottom: 10px;
+}
+
+a {
+  margin-bottom: 15px;
+}
+
+.book-card {
+  border: solid black 1px;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 25px;
+  text-align: center;
 }
