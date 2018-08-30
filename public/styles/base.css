@@ -160,3 +160,10 @@ padding-left: 25px;
 padding-top:15px;
 font-family: Arial, Helvetica, sans-serif;
 }
+
+.bar {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}

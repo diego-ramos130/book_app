@@ -1,18 +1,26 @@
-# book_app
+# Project Name
 
+**Author**: Kris Esvelt and Diego Ramos
+**Version**: 1.2.0 (increment the patch/fix version number if you make more commits past your first submission)
 
-INSERT INTO books(author, title, isbn, image_url, description) VALUES('Neal Stephenson', 'Snow Crash', 'isbn_13 9780141924045', 'http://books.google.com/books/content?id=inYs79gV4UQC&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'The only relief from the sea of logos is within the well guarded borders of the Burbclaves. Is it any wonder that most sane folks have forsaken the real world and chosen to live in the computer-generated universe of virtual reality? In a major city, the size of a dozen Manhattans, is a domain of pleasures limited only by the imagination. But now a strange new computer virus called Snow Crash is striking down hackers everywhere, leaving an unlikely young man as humankinds last best hope.')
+## Overview
+<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
+This application takes books stored in a database and renders their information on a page and can get details like description and ISBN on detailed view. It can also add books to the database using the new book form page. We're building it to eventually pull books from google books API at will and store them in a database, all to be deployable on something like a heroku app. Consider it a list of books!
 
+## Getting Started
+<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+1. Clone the repository.
+2. Host the website on a server, most likely using something like node or nodemon (npm i to download the packages).
 
-INSERT INTO books(author, title, isbn, image_url, description) VALUES('','','','','')
+## Architecture
+<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+-HTML/CSS
+-EJS 
+-JS (node serverside)
+-Express
+-PostgreSQL
+-Cors
 
-CREATE TABLE books(id SERIAL PRIMARY KEY NOT NULL, author VARCHAR(256) NOT NULL, title VARCHAR(256) NOT NULL, isbn VARCHAR(256) NOT NULL, image_url VARCHAR(256) NOT NULL, description TEXT NOT NULL);
-
-
-
-INSERT INTO books(author, title, isbn, image_url, description) VALUES('Frank Herbert','Dune' , 'ISBN_13 9780441013593', 'http://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api', 'Follows the adventures of Paul Atreides, the son of a betrayed duke given up for dead on a treacherous desert planet and adopted by its fierce, nomadic people, who help him unravel his most unexpected destiny.')
-
-
-INSERT INTO books(author, title, isbn, image_url, description) VALUES('Yoon Ha Lee','Ninefox Gambit', 'ISBN_13 9781849979924', 'http://books.google.com/books/content?id=elAEDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api', 'WINNER OF THE 2016 LOCUS AWARD, NOMINATED FOR THE 2016 HUGO, NEBULA AND ARTHUR C. CLARKE AWARDS When Captain Kel Cheris of the hexarchate is disgraced for her unconventional tactics, Kel Command gives her a chance to redeem herself, by retaking the Fortress of Scattered Needles from the heretics. Cheris s career isnt the only thing at stake. if the fortress falls, the hexarchate itself might be next. Cheris s best hope is to ally with the undead tactician Shuos Jedao. The good news is that Jedao has never lost a battle, and he may be the only one who can figure out how to successfully besiege the fortress. The bad news is that Jedao went mad in his first life and massacred two armies, one of them his own. As the siege wears on, Cheris must decide how far she can trust Jedao because she might be his next victim.')
-
-INSERT INTO books(author, title, isbn, image_url, description) VALUES('John Ronald Reuel Tolkien', 'The Fellowship of the Ring', 'ISBN_13 9780007522903', 'http://books.google.com/books/content?id=f3q6mwEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Fantasy fiction. When they were first published, THE HOBBIT and THE LORD OF THE RINGS became instant classics. Treasured by readers young and old, these works of sweeping fantasy, steeped in unrivalled magic and otherworldliness have sold more than 150 million copies around the world. This new boxed set contains both titles and features brand new cover designs. It offers readers a new opportunity to discover Tolkiens remarkable world of Middle-earth and to follow the complete story of Bilbo Baggins and the Hobbits part in the epic quest for the Ring beginning with Bilbos fateful visit from Gandalf and culminating in the dramatic climax between Frodo and Gollum atop Mount Doom.')
+## Change Log
+August 29th: Fully initialized and deployed a website with books.
+August 30th: added a form for users to enter books, and added better looking CSS.
