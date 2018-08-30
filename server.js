@@ -7,9 +7,9 @@ const app = express();
 app.use(express.urlencoded({extended:true}))
 
 //const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
-const conString = 'postgres://localhost:5432/books_app';
-const client = new pg.Client(conString);
-// const client = new pg.Client(process.env.DATABASE_URL);
+//const conString = 'postgres://localhost:5432/books_app';
+//const client = new pg.Client(conString);
+const client = new pg.Client(process.env.DATABASE_URL);
 
 client.connect();
 
