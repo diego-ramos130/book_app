@@ -31,15 +31,21 @@
 
       </section>
       
-      <%- include partials/scripts %>
-      <script>
-        $('.bookDeck button').on('click', function() {
-          $.get(`/books/${$(this).attr('id')}`, function() {
-          })
-        });
-      </script>
 
     </main>
+
+    <footer>
+      <%- include partials/footer %>
+    </footer>
+
+    <%- include partials/scripts %>
+    <script>
+      $('.bookDeck button').on('click', function() {
+        $.get(`/books/${$(this).attr('id')}`, function() {
+        })
+      });
+    </script>
+
   </body>
 
 </html>
