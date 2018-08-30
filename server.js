@@ -6,8 +6,8 @@ const app = express();
 
 app.use(express.urlencoded({extended:true}))
 
-const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
-//const conString = 'postgres://localhost:5432/books_app';
+//const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
+const conString = 'postgres://localhost:5432/books_app';
 const client = new pg.Client(conString);
 // const client = new pg.Client(process.env.DATABASE_URL);
 
@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 app.get('/', mainRender)
 app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
-app.post('/books/', newBookPost)
+app.post('/books/:id', newBookPost)
 
 function newBookPost(req, res){
   console.log(req.body);
