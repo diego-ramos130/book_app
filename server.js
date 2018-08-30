@@ -6,9 +6,9 @@ const app = express();
 
 app.use(express.urlencoded({extended:true}))
 
-//const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
+const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
 //const conString = 'postgres://localhost:5432/books_app';
-//const client = new pg.Client(conString);
+const client = new pg.Client(conString);
 // const client = new pg.Client(process.env.DATABASE_URL);
 
 client.connect();
@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 app.get('/', mainRender)
 app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
-app.post('/books/:id', newBookPost)
+app.post('/books/', newBookPost)
 
 function newBookPost(req, res){
   console.log(req.body);
@@ -26,12 +26,17 @@ function newBookPost(req, res){
   let values = [req.body.author, req.body.title, req.body.image_url, req.body.isbn, req.body.description];
   client.query(SQL, values)
     .then(() => {
-      let SQLretrieve = `SELECT * FROM books WHERE id = $1`;
-      let valuesRetrieve = [req.params.id];
-      client.query(SQLretrieve, valuesRetrieve)
+      let thisId = `SELECT * FROM books WHERE isbn = $1`
+      let thisValues = [req.body.isbn]
+      client.query(thisId, thisValues)
         .then(data => {
-          let books = data.rows[0];
-          res.render('pages/show', {books});
+          console.log(data.rows[0]);
+          let bookInfo = data.rows[0];
+          res.render('pages/show', { bookInfo });
+        })
+        .catch(error => {
+          console.error(error);
+          throwError(res, error);
         })
     })
 }
@@ -40,7 +45,7 @@ function newBookRender(req, res){
   try {
     res.render('pages/new')
   }
-  catch(error) {  
+  catch(error) {
     throwError(res, error);
   }
 }
