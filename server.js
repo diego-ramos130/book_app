@@ -19,7 +19,8 @@ app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
 app.post('/books/', newBookPost)
 
-function newBookPost(req, res){
+
+function newBookPost(req, res) {
   console.log(req.body);
   let SQL = `INSERT INTO books(author, title, image_url, isbn, description) 
   VALUES($1, $2, $3, $4, $5)`;
@@ -41,7 +42,8 @@ function newBookPost(req, res){
     })
 }
 
-function newBookRender(req, res){
+
+function newBookRender(req, res) {
   try {
     res.render('pages/new')
   }
@@ -50,7 +52,8 @@ function newBookRender(req, res){
   }
 }
 
-function mainRender(req, res){
+
+function mainRender(req, res) {
   let SQL = 'SELECT title, author, image_url, id FROM books';
   client.query(SQL, function (error, result) {
     console.log(result);
@@ -66,6 +69,7 @@ function mainRender(req, res){
       throwError(res, error);
     })
 }
+
 
 function selectBook(req, res) {
   let SQL = 'SELECT * FROM books WHERE id = $1'
