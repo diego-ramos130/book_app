@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <%- include ../partials/css %>
+      <%- include ../partials/head %>
 
   </head>
   <body>
-    <div class=book-card>
-      <h2><%=bookInfo.title %></h2>
-      <h3><%=bookInfo.author %></h3>
-      <img src=<%=bookInfo.image_url %> alt="">
-      <p><%=bookInfo.description %></p>
-      <p><%=bookInfo.isbn %></p>
-    </div>
-    <a href="/">Back</a>
-    <%- include ../partials/scripts %>
+    <header>
+        <%- include ../partials/header %>
+    </header>
+
+    <main>
+      <div class=book-card>
+
+        <img src=<%=bookInfo.image_url %> alt="">
+        <h2 class="cardh2"><%=bookInfo.title %></h2>
+        <h3 class="cardh3"><%=bookInfo.author %></h3>
+        <p class="cardP"><%=bookInfo.description %></p>
+        <p class="cardISBN">ISBN: <%=bookInfo.isbn %></p>
+
+      </div>
+
+      <div class="backButton">
+        <a href="/">Back</a>
+      </div>
+
+      <%- include ../partials/scripts %>
+
+    </main>
   </body>
 </html>

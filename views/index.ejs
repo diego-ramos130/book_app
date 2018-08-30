@@ -1,38 +1,44 @@
 <!DOCTYPE html> 
 <html> 
-<head>
-  <title>
-    Book App
-  </title>
-  <%- include partials/css %>
-</head>
+  <head>
+    <%- include partials/head %>
+  </head>
 
-<body>
-  <h1>Best Books!</h1>
+  <body>
+    <header>
+        <%- include partials/header %>
+        <section id="lowerBar">
+          <h3 class="headerh3"><%=books.length %> Saved Books</h3>
+        </section>
+    </header>
 
-  <h3><%=books.length %> Saved Books</h3>
+    <main>
+      <section class="bookDeck">
 
-  <section class="bookDeck">
-    <% books.forEach(book => { %>
-      <div class=book-card >
+        <% books.forEach(book => { %>
 
-      <h2><%=book.title %></h2>
-      <h3><%=book.author %></h3>
-      <img src=<%=book.image_url %> alt="">
-      <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
+          <div class=book-card >
 
+            <img src=<%=book.image_url %> alt="">
+            <h2 class="cardh2"><%=book.title %></h2>
+            <h3 class="cardh3"><%=book.author %></h3>
+            <a href='books/<%= book.id %>/' id=<%=book.id %>>View Details</a>
 
-      </div>
-    <% }) %>
-  </section>
-  <%- include partials/scripts %>
-  <script>
-    $('.bookDeck button').on('click', function() {
-      $.get(`/books/${$(this).attr('id')}`, function() {
-      })
-    });
-  </script>
+          </div>
 
-</body>
+        <% }) %>
+
+      </section>
+      
+      <%- include partials/scripts %>
+      <script>
+        $('.bookDeck button').on('click', function() {
+          $.get(`/books/${$(this).attr('id')}`, function() {
+          })
+        });
+      </script>
+
+    </main>
+  </body>
 
 </html>
