@@ -14,9 +14,18 @@ const client = new pg.Client(conString);
 client.connect();
 
 app.set('view engine', 'ejs');
-
+app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
 app.get('/', mainRender)
+
+function newBookRender(req, res){
+  try {
+    res.render('pages/new')
+  }
+  catch(error) {  
+    throwError(res, error);
+  }
+}
 
 function mainRender(req, res){
   let SQL = 'SELECT title, author, image_url, id FROM books';
