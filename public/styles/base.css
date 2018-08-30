@@ -91,3 +91,11 @@ a {
   padding-top: 15px;
   padding-bottom: 10px;
 }
+
+.bar {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+}
+#hamburger;
