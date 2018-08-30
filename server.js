@@ -4,16 +4,51 @@ const express = require('express');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-//const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
-// const conString = 'postgres://localhost:5432/books_app';
-//const client = new pg.Client(conString);
- const client = new pg.Client(process.env.DATABASE_URL);
+app.use(express.urlencoded({extended:true}))
+
+const conString = 'postgres://kris3579:meowmeow@localhost:5432/books_app';
+//const conString = 'postgres://localhost:5432/books_app';
+const client = new pg.Client(conString);
+// const client = new pg.Client(process.env.DATABASE_URL);
+
 client.connect();
 
 app.set('view engine', 'ejs');
-
-app.get('/books/:id', selectBook)
 app.get('/', mainRender)
+app.get('/new-book', newBookRender)
+app.get('/books/:id', selectBook)
+app.post('/books/', newBookPost)
+
+function newBookPost(req, res){
+  console.log(req.body);
+  let SQL = `INSERT INTO books(author, title, image_url, isbn, description) 
+  VALUES($1, $2, $3, $4, $5)`;
+  let values = [req.body.author, req.body.title, req.body.image_url, req.body.isbn, req.body.description];
+  client.query(SQL, values)
+    .then(() => {
+      let thisId = `SELECT * FROM books WHERE isbn = $1`
+      let thisValues = [req.body.isbn]
+      client.query(thisId, thisValues)
+        .then(data => {
+          console.log(data.rows[0]);
+          let bookInfo = data.rows[0];
+          res.render('pages/show', { bookInfo });
+        })
+        .catch(error => {
+          console.error(error);
+          throwError(res, error);
+        })
+    })
+}
+
+function newBookRender(req, res){
+  try {
+    res.render('pages/new')
+  }
+  catch(error) {
+    throwError(res, error);
+  }
+}
 
 function mainRender(req, res){
   let SQL = 'SELECT title, author, image_url, id FROM books';
