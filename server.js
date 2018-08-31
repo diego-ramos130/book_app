@@ -19,6 +19,32 @@ app.get('/search/result', googleSearchResult)
 app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
 app.post('/books/', newBookPost)
+app.post('/books/success', addBookDatabase)
+
+function addBookDatabase(req,res){
+  let author = req.body.author || 'DATA NOT FOUND';
+  let title = req.body.title || 'DATA NOT FOUND';
+  let image_url = req.body.image_url || 'DATA NOT FOUND';
+  let isbn = req.body.isbn || 'DATA NOT FOUND';
+  let description = req.body.description || 'DATA NOT FOUND';
+  
+  let SQL = `INSERT INTO books(author, title, image_url, isbn, description) 
+  VALUES($1, $2, $3, $4, $5)`;
+  let values = [author, title, image_url, isbn, description];
+  client.query(SQL, values)
+    .then(() => {
+      let thisId = `SELECT * FROM books WHERE isbn = $1`
+      let thisValues = [req.body.isbn]
+      client.query(thisId, thisValues)
+        .then(data => {
+          let bookInfo = data.rows[0];
+          res.render('pages/books/addedbook', { bookInfo });
+        })
+    })
+    .catch(error => {
+      throwError(res, error);
+    })
+}
 
 function searchBookGo(req,res){
   try{
@@ -29,28 +55,28 @@ function searchBookGo(req,res){
   }
 }
 function googleSearchResult(req, res) {
-  console.log(req.query.author_title);
+  
   
   let url = 'https://www.googleapis.com/books/v1/volumes';
   let queryString = '';
   queryString += 'q' + '=' + req.query.author_title;
   url = url + '?' + queryString;
-  console.log(url);
+  
 
   superagent.get(url)
     .then(results => {
       let listings = results.body.items.reduce((items, item, idx) => {
-        console.log(item.searchInfo);
+        
         let listing = {
-          title:item.volumeInfo.title || '' ,
-          author:item.volumeInfo.authors || '' ,
-          isbn:item.volumeInfo.industryIdentifiers[0].identifier || '',
-          image_url:item.volumeInfo.imageLinks.thumbnail || '' ,
-          snippet:item.searchInfo.textSnippet || '',
-          description:item.volumeInfo.description || '' ,
+          title: item.volumeInfo.title  || null ,
+          author: item.volumeInfo.authors  || null ,
+          isbn: item.volumeInfo.industryIdentifiers[0].identifier || null,
+          image_url: item.volumeInfo.imageLinks.thumbnail  || null,
+          snippet: item.searchInfo.textSnippet || null,
+          description: item.volumeInfo.description  || null
         }
         items.push(listing);
-        //console.log(items);
+       
         return items;
       },[]);
       res.render('pages/searches/show', {items:listings});
