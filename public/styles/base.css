@@ -167,3 +167,6 @@ font-family: Arial, Helvetica, sans-serif;
     background-color: black;
     margin: 6px 0;
 }
+#hiddenForm{
+  display:none;
+}

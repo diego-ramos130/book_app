@@ -1,0 +1,46 @@
+<html>
+    <head>
+      <%- include ../../partials/head %>
+    </head>
+    
+    <body>
+      <header>
+        <%- include ../../partials/header %>
+      </header>
+    
+      <main>
+        <% items.forEach(item => { %>
+        <div class=book-card>
+    
+          <img src=<%=item.image_url %> alt="">
+          <h2 class="cardh2">
+            <%=item.title %>
+          </h2>
+          <h3 class="cardh3">
+            <%=item.author %>
+          </h3>
+          <p class="cardP">
+            <%=item.description %>
+          </p>
+          <form method="POST" action="/books/success" id='hiddenForm'>
+            <input type="text" name="author" placeholder="Author here!"  autocomplete="off" value="<%=item.author%>" />
+            <input type="text" name="title" placeholder="Title here!"  autocomplete="off" value="<%=item.title%>" />
+            <input type="url" name="image_url" placeholder="Image URL here!"  autocomplete="off" value="<%=item.image_url%>"/>
+            <input type="text" name="isbn" placeholder="ISBN here!"  autocomplete="off" value="<%=item.isbn%>"/>
+            <textarea form="bookForm" name="description" placeholder="Description here!" ><%=item.description%></textarea>
+            
+          </form>
+          
+          <input type="submit" value="Submit" id="newBookButton" form="hiddenForm">
+    
+        </div>
+    <% }) %>
+        <div class="backButton">
+          <a href="/">Back</a>
+        </div>
+    
+        <%- include ../../partials/scripts %>
+    
+      </main>
+    </body>
+</html>
