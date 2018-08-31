@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <%- include partials/head %>
+  </head>
+  <body>
+    <header>
+        <%- include partials/header %>
+    </header>
+
+    <main>
+      <div class=book-card>
+
+        <img src=<%=bookInfo.image_url %> alt="">
+        <h2 class="cardh2"><%=bookInfo.title %></h2>
+        <h3 class="cardh3"><%=bookInfo.author %></h3>
+        <p class="cardP"><%=bookInfo.description %></p>
+        <p class="cardISBN">ISBN: <%=bookInfo.isbn %></p>
+
+      </div>
+
+      <div class="backButton">
+        <a href="/">Back</a>
+      </div>
+
+      <%- include partials/scripts %>
+
+    </main>
+  </body>
+</html>
