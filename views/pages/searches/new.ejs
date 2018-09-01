@@ -11,14 +11,18 @@
 <main>
   <form method='GET' action='/search/result' id='searchForm'>
     <fieldset>
-      <input type='radio' id='authorRadio' checked name='searchradio'>
-      <label for='authorRadio'>Author</label>
-      <input type='radio' id='titleRadio' value='Title' name='searchradio'>
+      <div class='radiodiv'>
+        <label for='authorRadio'>Author</label>
+        <input type='radio' id='authorRadio' checked name='searchradio'>
+    </div>
+    <div class='radiodiv'>
       <label for='titleRadio'>Title</label>
+      <input type='radio' id='titleRadio' value='Title' name='searchradio'>
+    </div>
     </fieldset>
     <fieldset>
       <input type="text" name='author_title' autocomplete="off" placeholder="author or title" >
-      <button>Submit</button>>
+      <button>Submit</button>
   </fieldset>
   </form>
 </main>
