@@ -15,6 +15,8 @@ client.connect();
 app.set('view engine', 'ejs');
 app.get('/', mainRender)
 app.get('/search/', searchBookGo)
+app.get('/search/new-book', newBookRender)
+app.get('/search/search', searchBookGo)
 app.get('/search/result', googleSearchResult)
 app.get('/new-book', newBookRender)
 app.get('/books/:id', selectBook)
@@ -72,7 +74,6 @@ function googleSearchResult(req, res) {
           author: item.volumeInfo.authors  || null ,
           isbn: item.volumeInfo.industryIdentifiers[0].identifier || null,
           image_url: item.volumeInfo.imageLinks.thumbnail  || null,
-          snippet: item.searchInfo.textSnippet || null,
           description: item.volumeInfo.description  || null
         }
         items.push(listing);
@@ -121,12 +122,8 @@ function newBookRender(req, res) {
 
 function mainRender(req, res) {
   let SQL = 'SELECT title, author, image_url, id FROM books';
-  client.query(SQL, function (error, result) {
-    
-  });
   client.query(SQL)
     .then(data => {
-      
       let books = data.rows;
       res.render('index', { books });
     })
